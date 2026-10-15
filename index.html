@@ -7,11 +7,150 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="hero"><div class="wrap"><span class="eyebrow">LEARN BY DOING • VANILLA JAVASCRIPT</span><h1>OOP Learning Playground</h1><p>Understand objects, classes, and the four OOP pillars with simple interactive examples.</p></div></header>
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">LEARN BY DOING • VANILLA JAVASCRIPT</span>
+      <h1>OOP Learning Playground</h1>
+      <p>Understand objects, classes, the four pillars of OOP, and composition — with plain-language explanations, real-world use cases, and examples you can run right here.</p>
+      <ul id="heroStats" class="hero-stats" aria-label="What is inside"></ul>
+    </div>
+  </header>
+
   <main class="wrap">
-    <nav aria-label="Sections"><a href="#concepts">Concepts</a><a href="#playground">Bank demo</a><a href="#quiz">Quiz</a></nav>
-    <section id="concepts"><h2>1. Explore OOP concepts</h2><p class="muted">Choose a concept to see its meaning and runnable JavaScript example.</p><div id="conceptButtons" class="tabs"></div><article class="panel"><h3 id="conceptTitle"></h3><p id="conceptText"></p><pre><code id="conceptCode"></code></pre><button id="runExample" class="secondary">Run example</button><div id="exampleOutput" class="output" aria-live="polite">Output appears here.</div></article></section>
-    <section id="playground"><h2>2. Interactive bank account</h2><p class="muted">Create an account and call its methods. Try invalid amounts to see encapsulation and validation in action.</p><div class="panel"><div class="fields"><label>Account holder<input id="holder" value="Alex" maxlength="30" /></label><label>Starting balance ($)<input id="initial" type="number" min="0" step="0.01" value="1000" /></label></div><button id="create">Create account</button><div class="balance"><span>Current balance</span><strong id="balance">No account yet</strong><small id="accountInfo">Create an account to begin</small></div><div class="fields"><label>Transaction amount ($)<input id="amount" type="number" min="0.01" step="0.01" value="100" /></label><div class="actions"><button id="deposit">Deposit</button><button id="withdraw" class="secondary">Withdraw</button></div></div><p id="bankMessage" class="status" aria-live="polite"></p><h3>Transaction history</h3><ul id="history" class="history"><li>No transactions yet.</li></ul></div></section>
-    <section id="quiz"><h2>3. Check your knowledge</h2><div class="panel"><div id="quizQuestions"></div><button id="checkQuiz">Check answers</button><button id="resetQuiz" class="secondary">Try again</button><p id="quizResult" class="status" aria-live="polite"></p></div></section>
-  </main><footer>Built with HTML + CSS + JavaScript • No frameworks required</footer><script src="script.js"></script>
-</body></html>
+    <nav aria-label="Sections">
+      <a href="#why">Why OOP?</a>
+      <a href="#concepts">Concepts</a>
+      <a href="#playground">Bank demo</a>
+      <a href="#together">All together</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#cheatsheet">Cheat sheet</a>
+    </nav>
+
+    <section id="why">
+      <h2>1. Why object-oriented programming?</h2>
+      <p class="muted">OOP is a way of organising code around <strong>objects</strong>: bundles of data plus the rules for changing that data. Compare the same bank account written both ways.</p>
+      <div class="compare">
+        <figure class="panel compact">
+          <figcaption><span class="badge bad">Without OOP</span> Data and functions are separate</figcaption>
+          <pre><code id="whyProcedural"></code></pre>
+        </figure>
+        <figure class="panel compact">
+          <figcaption><span class="badge good">With OOP</span> Data and rules live together</figcaption>
+          <pre><code id="whyOop"></code></pre>
+        </figure>
+      </div>
+      <div class="compare">
+        <div class="panel compact">
+          <h3>OOP helps when…</h3>
+          <ul id="whyHelps" class="bullets"></ul>
+        </div>
+        <div class="panel compact">
+          <h3>OOP is overkill when…</h3>
+          <ul id="whyOverkill" class="bullets"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="concepts">
+      <h2>2. Explore OOP concepts</h2>
+      <p class="muted">Pick a concept. Each one has an explanation, a real-world analogy, where it shows up in real software, runnable examples, and common mistakes to avoid.</p>
+      <div id="conceptButtons" class="tabs" role="tablist" aria-label="Concepts"></div>
+      <article id="conceptPanel" class="panel concept" aria-live="polite"></article>
+    </section>
+
+    <section id="playground">
+      <h2>3. Interactive bank account</h2>
+      <p class="muted">A real class hierarchy: <code>CheckingAccount</code> and <code>SavingsAccount</code> both extend <code>BankAccount</code>. Pick a type, then try deposits, withdrawals, interest, and even "hacking" the balance. The panel on the right explains which OOP idea just ran.</p>
+      <div class="panel">
+        <div class="fields">
+          <label>Account type
+            <select id="accountType">
+              <option value="standard">Standard — no overdraft</option>
+              <option value="checking">Checking — $200 overdraft</option>
+              <option value="savings">Savings — 2% interest, 3 withdrawals</option>
+            </select>
+          </label>
+          <label>Account holder<input id="holder" value="Alex" maxlength="30" /></label>
+          <label>Starting balance ($)<input id="initial" type="number" min="0" step="0.01" value="1000" /></label>
+        </div>
+        <button id="create">Create account</button>
+
+        <div class="bank-grid">
+          <div>
+            <div class="balance">
+              <span>Current balance</span>
+              <strong id="balance">No account yet</strong>
+              <small id="accountInfo">Create an account to begin</small>
+            </div>
+            <div class="fields">
+              <label>Transaction amount ($)<input id="amount" type="number" min="0.01" step="0.01" value="100" /></label>
+            </div>
+            <div class="actions">
+              <button id="deposit">Deposit</button>
+              <button id="withdraw" class="secondary">Withdraw</button>
+              <button id="interest" class="secondary">Add interest</button>
+              <button id="hack" class="danger">Try to set balance directly</button>
+            </div>
+            <p id="bankMessage" class="status" aria-live="polite"></p>
+          </div>
+          <aside class="explain" aria-live="polite">
+            <h3>What just happened in the code</h3>
+            <pre class="inline-code"><code id="explainCode">// Create an account to start</code></pre>
+            <p id="explainPillar" class="pill-label"></p>
+            <p id="explainText" class="muted">Each button calls a method on the account object. The explanation of what ran will appear here.</p>
+          </aside>
+        </div>
+
+        <h3>Transaction history</h3>
+        <ul id="history" class="history"><li>No transactions yet.</li></ul>
+        <details class="source">
+          <summary>See the classes behind this demo</summary>
+          <p class="muted">This is the actual code running the demo, read straight from the page's script.</p>
+          <pre><code id="bankSource"></code></pre>
+        </details>
+      </div>
+    </section>
+
+    <section id="together">
+      <h2>4. Putting it all together</h2>
+      <p class="muted" id="togetherIntro"></p>
+      <div class="panel">
+        <h3 id="togetherTitle"></h3>
+        <pre><code id="togetherCode"></code></pre>
+        <div class="actions"><button id="runTogether">Run example</button></div>
+        <div id="togetherOutput" class="output" aria-live="polite">Predict the output, then click Run.</div>
+        <h3 class="spaced">Where each idea appears</h3>
+        <dl id="togetherMap" class="pillar-map"></dl>
+      </div>
+    </section>
+
+    <section id="quiz">
+      <h2>5. Check your knowledge</h2>
+      <p class="muted">Answer all questions, then check. Each answer comes with an explanation.</p>
+      <div class="panel">
+        <div id="quizQuestions"></div>
+        <div class="actions">
+          <button id="checkQuiz">Check answers</button>
+          <button id="resetQuiz" class="secondary">Try again</button>
+        </div>
+        <p id="quizResult" class="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="cheatsheet">
+      <h2>6. Cheat sheet</h2>
+      <p class="muted">Everything on one screen. Come back here when you need a quick reminder.</p>
+      <div class="panel table-wrap">
+        <table>
+          <thead><tr><th>Concept</th><th>Idea</th><th>JavaScript syntax</th><th>Real-world example</th></tr></thead>
+          <tbody id="cheatBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>Built with HTML + CSS + JavaScript • No frameworks required</footer>
+  <script src="content.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
