@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OOP Learning Playground</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero"><div class="wrap"><span class="eyebrow">LEARN BY DOING • VANILLA JAVASCRIPT</span><h1>OOP Learning Playground</h1><p>Understand objects, classes, and the four OOP pillars with simple interactive examples.</p></div></header>
+  <main class="wrap">
+    <nav aria-label="Sections"><a href="#concepts">Concepts</a><a href="#playground">Bank demo</a><a href="#quiz">Quiz</a></nav>
+    <section id="concepts"><h2>1. Explore OOP concepts</h2><p class="muted">Choose a concept to see its meaning and runnable JavaScript example.</p><div id="conceptButtons" class="tabs"></div><article class="panel"><h3 id="conceptTitle"></h3><p id="conceptText"></p><pre><code id="conceptCode"></code></pre><button id="runExample" class="secondary">Run example</button><div id="exampleOutput" class="output" aria-live="polite">Output appears here.</div></article></section>
+    <section id="playground"><h2>2. Interactive bank account</h2><p class="muted">Create an account and call its methods. Try invalid amounts to see encapsulation and validation in action.</p><div class="panel"><div class="fields"><label>Account holder<input id="holder" value="Alex" maxlength="30" /></label><label>Starting balance ($)<input id="initial" type="number" min="0" step="0.01" value="1000" /></label></div><button id="create">Create account</button><div class="balance"><span>Current balance</span><strong id="balance">No account yet</strong><small id="accountInfo">Create an account to begin</small></div><div class="fields"><label>Transaction amount ($)<input id="amount" type="number" min="0.01" step="0.01" value="100" /></label><div class="actions"><button id="deposit">Deposit</button><button id="withdraw" class="secondary">Withdraw</button></div></div><p id="bankMessage" class="status" aria-live="polite"></p><h3>Transaction history</h3><ul id="history" class="history"><li>No transactions yet.</li></ul></div></section>
+    <section id="quiz"><h2>3. Check your knowledge</h2><div class="panel"><div id="quizQuestions"></div><button id="checkQuiz">Check answers</button><button id="resetQuiz" class="secondary">Try again</button><p id="quizResult" class="status" aria-live="polite"></p></div></section>
+  </main><footer>Built with HTML + CSS + JavaScript • No frameworks required</footer><script src="script.js"></script>
+</body></html>
